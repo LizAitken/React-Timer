@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    timer: 0
+  };
+
+  countdownInterval = 0;
+
+  addTime = () => {
+    let newTime = this.state.timer + 1;
+    this.setState({
+      timer: newTime
+    });
+  };
+
+  startTimer = () => {
+    this.countdownInterval = setInterval(this.addTime, 1000);
+  }
+
+  stopTimer = () => {
+    clearInterval(this.countdownInterval);
+  }
+
+  resetTimer = () => {
+    clearInterval(this.countdownInterval);
+    this.setState({
+      timer: 0
+    });
+  }
+
+  render() {
+    const { timer } = this.state;
+
+    return (
+      <div className="App">
+        <p>Timer: {timer}</p>
+        <button onClick={this.startTimer}>Start</button>
+        <button onClick={this.stopTimer}>Stop</button>
+        <button onClick={this.resetTimer}>Reset</button>
+      </div>
+    );
+  }
 }
 
 export default App;

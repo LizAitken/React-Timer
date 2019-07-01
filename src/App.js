@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import Button from './button';
+import Wrapper from './wrapper';
 
 class App extends Component {
   state = {
@@ -35,10 +37,15 @@ class App extends Component {
 
     return (
       <div className="App">
-        <p>Timer: {timer}</p>
-        <button onClick={this.startTimer}>Start</button>
-        <button onClick={this.stopTimer}>Stop</button>
-        <button onClick={this.resetTimer}>Reset</button>
+        <Wrapper>
+          <p>Timer: {timer}</p>
+          <Button clickHandler={this.startTimer} name={"Start Timer"}/>
+          <Button clickHandler={this.stopTimer} name={"Stop Timer"}/>
+          <Button clickHandler={this.resetTimer} name={"Reset Timer"}/>
+          {/* <button onClick={this.startTimer}>Start</button>
+          <button onClick={this.stopTimer}>Stop</button>
+          <button onClick={this.resetTimer}>Reset</button> */}
+        </Wrapper>
       </div>
     );
   }
